@@ -4,33 +4,37 @@
   "version": "0.1.0",
   "author": "Flor De Bock",
   "dependencies": {
-    "tslib": "^2.4.0",
-    "@boostercloud/framework-core": "^2.9.2",
-    "@boostercloud/framework-types": "^2.9.2",
     "@boostercloud/framework-common-helpers": "^2.9.2",
-    "@boostercloud/framework-provider-aws": "^2.9.2"
+    "@boostercloud/framework-core": "^2.9.2",
+    "@boostercloud/framework-provider-aws": "^2.9.2",
+    "@boostercloud/framework-types": "^2.9.2",
+    "chai": "^5.1.0",
+    "ts-sinon": "^2.0.2",
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
+    "@boostercloud/framework-provider-aws-infrastructure": "^2.9.2",
     "@boostercloud/framework-provider-local": "^2.9.2",
     "@boostercloud/framework-provider-local-infrastructure": "^2.9.2",
     "@boostercloud/metadata-booster": "^2.9.2",
-    "@boostercloud/framework-provider-aws-infrastructure": "^2.9.2",
-    "rimraf": "^5.0.0",
+    "@types/chai": "^4.3.14",
+    "@types/jsonwebtoken": "9.0.1",
+    "@types/mocha": "10.0.1",
+    "@types/node": "^18.18.2",
+    "@types/sinon": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "4.22.1",
     "@typescript-eslint/parser": "4.22.1",
     "eslint": "7.26.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-prettier": "3.4.0",
+    "graphql": "^16.6.0",
     "mocha": "10.2.0",
-    "@types/mocha": "10.0.1",
-    "@types/jsonwebtoken": "9.0.1",
     "nyc": "15.1.0",
-    "prettier":  "2.3.0",
-    "typescript": "5.1.6",
-    "ts-node": "9.1.1",
-    "@types/node": "^18.18.2",
+    "prettier": "2.3.0",
+    "rimraf": "^5.0.0",
+    "ts-node": "^10.9.2",
     "ts-patch": "3.1.2",
-    "graphql": "^16.6.0"
+    "typescript": "5.1.6"
   },
   "engines": {
     "node": ">=18.0.0 <19.0.0"
@@ -44,7 +48,8 @@
     "lint:check": "eslint --ext '.js,.ts' **/*.ts",
     "lint:fix": "eslint --quiet --fix --ext '.js,.ts' **/*.ts",
     "build": "tsc -b tsconfig.json",
-    "clean": "rimraf ./dist tsconfig.tsbuildinfo"
+    "clean": "rimraf ./dist tsconfig.tsbuildinfo",
+    "test": "nyc --extension .ts mocha --forbid-only \"src/test/test.js\""
   },
   "types": "lib/index.d.ts"
 }

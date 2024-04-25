@@ -49,3 +49,138 @@ We use:
 * Nodejs18.17.1
 * Booster2.9.2
 
+##  Local Environment Setup
+
+Use the following commands to build, clean and run the application on your local repo:
+
+    boost build
+    boost clean
+    boost start -e local -p 8000
+
+
+## GraphQL Commands
+
+I've used Postman to send these graphql commands but other tools like altair would work as wel. Send the queries to: http://localhost:8000/graphql
+
+Create new todo items:
+
+    mutation {
+        CreateTodoItem(input:  {
+            todoItemId: 1,
+            title: "My First Todo Item!",
+            label: "General",
+            description: "This is my very first Todo Item.",
+            dueDate: "2024-01-01"
+        })
+    }
+
+    mutation {
+        CreateTodoItem(input:  {
+            todoItemId: 2,
+            title: "My Second Todo Item!",
+            label: "General",
+            description: "The second thing you should do!",
+            dueDate: "2024-01-01"
+        })
+    }
+
+    mutation {
+        CreateTodoItem(input:  {
+            todoItemId: 3,
+            title: "My Third Todo Item!",
+            label: "General",
+            description: "The third thing you should do!",
+            dueDate: "2024-01-01"
+        })
+    }
+
+    These todo item should fail and throw an error because of our business rules:
+    mutation {
+        CreateTodoItem(input:  {
+            todoItemId: 4,
+            title: "My Fourth Todo Item!",
+            label: "General",
+            description: "This todo item will fail.",
+            dueDate: "2024-01-01"
+        })
+    }
+
+    mutation {
+        CreateTodoItem(input:  {
+            todoItemId: 4,
+            title: "My Fourth Todo Item!",
+            label: "Work",
+            description: "This todo item will fail.",
+            dueDate: "2024-01-01"
+        })
+    }
+
+But this one will work again:
+    mutation {
+        CreateTodoItem(input:  {
+            todoItemId: 4,
+            title: "My Fourth Todo Item!",
+            label: "Work",
+            description: "This todo item will fail.",
+            dueDate: "2024-01-02"
+        })
+    }
+
+
+Read the todo items:
+
+ query {
+        TodoReadModels {
+            id
+            title
+            label
+            description
+            dueDate
+            completed
+        }
+    }
+Update a todo item:
+
+    mutation {
+        UpdateTodoItem(input:  {
+            todoItemId: 2,
+            title: "My Last Todo Item!",
+            label: "General",
+            description: "The last thing you should do!",
+            dueDate: "2024-01-01"
+        })
+    }
+
+Complete a todo item:
+
+    mutation {
+        CompleteTodoItem(input:  {
+            todoItemId: 2,
+        })
+    }
+
+To filter based on completions status use the following queries: 
+
+ query {
+        TodoReadModels (filter: {completed: {eq: true}}){
+            id
+            title
+            label
+            description
+            dueDate
+            completed
+        }
+    }
+
+ query {
+        TodoReadModels (filter: {completed: {eq: false}}){
+            id
+            title
+            label
+            description
+            dueDate
+            completed
+        }
+    }
+
+
