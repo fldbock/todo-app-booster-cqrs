@@ -131,16 +131,16 @@ But this one will work again:
 
 Read the todo items:
 
- query {
-        TodoReadModels {
-            id
-            title
-            label
-            description
-            dueDate
-            completed
+    query {
+            TodoReadModels {
+                id
+                title
+                label
+                description
+                dueDate
+                completed
+            }
         }
-    }
 
 Update a todo item:
 
