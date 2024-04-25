@@ -94,7 +94,8 @@ Create new todo items:
         })
     }
 
-    These todo item should fail and throw an error because of our business rules:
+These todo item should fail and throw an error because of our business rules:
+
     mutation {
         CreateTodoItem(input:  {
             todoItemId: 4,
@@ -116,6 +117,7 @@ Create new todo items:
     }
 
 But this one will work again:
+
     mutation {
         CreateTodoItem(input:  {
             todoItemId: 4,
@@ -139,6 +141,7 @@ Read the todo items:
             completed
         }
     }
+
 Update a todo item:
 
     mutation {
@@ -161,26 +164,26 @@ Complete a todo item:
 
 To filter based on completions status use the following queries: 
 
- query {
-        TodoReadModels (filter: {completed: {eq: true}}){
-            id
-            title
-            label
-            description
-            dueDate
-            completed
+    query {
+            TodoReadModels (filter: {completed: {eq: true}}){
+                id
+                title
+                label
+                description
+                dueDate
+                completed
+            }
         }
-    }
 
- query {
-        TodoReadModels (filter: {completed: {eq: false}}){
-            id
-            title
-            label
-            description
-            dueDate
-            completed
+    query {
+            TodoReadModels (filter: {completed: {eq: false}}){
+                id
+                title
+                label
+                description
+                dueDate
+                completed
+            }
         }
-    }
 
 
